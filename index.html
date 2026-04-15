@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajan Kumar Tiwary — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1A7F5A;
+  --green-light: #e6f5ef;
+  --green-dim: rgba(26,127,90,0.12);
+  --dark: #0f1a14;
+  --dark2: #182518;
+  --cream: #f8f6f1;
+  --cream2: #f0ede6;
+  --text: #1c1c1c;
+  --text2: #555;
+  --text3: #888;
+  --border: rgba(0,0,0,0.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* ── cursor ── */
+.cursor{position:fixed;width:10px;height:10px;background:var(--green);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.15s,opacity 0.15s;mix-blend-mode:multiply}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--green);border-radius:50%;pointer-events:none;z-index:9998;transition:transform 0.35s cubic-bezier(.25,.46,.45,.94);opacity:0.5}
+
+/* ── nav ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(248,246,241,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);letter-spacing:-0.5px}
+.nav-logo span{color:var(--green)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:13px;color:var(--text2);text-decoration:none;letter-spacing:0.3px;transition:color 0.2s}
+.nav-links a:hover{color:var(--green)}
+
+/* ── hero ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 3rem 4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-circle{position:absolute;border-radius:50%;opacity:0.18}
+.hero-bg-circle.c1{width:600px;height:600px;background:var(--green);right:-180px;top:-120px;animation:float 8s ease-in-out infinite}
+.hero-bg-circle.c2{width:320px;height:320px;background:var(--green);left:-80px;bottom:-60px;animation:float 10s ease-in-out 2s infinite reverse}
+.hero-bg-line{position:absolute;width:1px;background:var(--border);top:0;bottom:0}
+.hero-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;width:100%}
+.hero-eyebrow{font-size:12px;letter-spacing:3px;color:var(--green);text-transform:uppercase;font-weight:500;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.7s ease 0.1s forwards}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(52px,8vw,96px);line-height:1.0;letter-spacing:-2px;opacity:0;animation:fadeUp 0.8s ease 0.2s forwards;color:var(--text)}
+.hero-name em{color:var(--green);font-style:italic}
+.hero-desc{font-size:17px;color:var(--text2);max-width:520px;line-height:1.75;margin-top:1.5rem;font-weight:300;opacity:0;animation:fadeUp 0.8s ease 0.35s forwards}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:2rem;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards}
+.pill{background:white;border:1px solid var(--border);border-radius:100px;padding:7px 16px;font-size:12.5px;color:var(--text2);display:flex;align-items:center;gap:6px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.hero-actions{display:flex;gap:12px;margin-top:2.5rem;opacity:0;animation:fadeUp 0.8s ease 0.65s forwards;flex-wrap:wrap}
+.btn-primary{background:var(--green);color:white;border:none;border-radius:100px;padding:13px 28px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(26,127,90,0.28)}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border);border-radius:100px;padding:12px 28px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:border-color 0.2s,color 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{border-color:var(--green);color:var(--green)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 0.8s ease 1s forwards}
+.hero-scroll span{font-size:11px;letter-spacing:2px;color:var(--text3);text-transform:uppercase}
+.scroll-line{width:1px;height:50px;background:linear-gradient(var(--green),transparent);animation:scrollPulse 2s ease-in-out infinite}
+
+/* ── sections ── */
+section{padding:6rem 3rem}
+.section-inner{max-width:1100px;margin:0 auto;width:100%}
+.section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:3.5rem}
+.section-num{font-family:'DM Serif Display',serif;font-size:64px;color:var(--green-light);line-height:1;user-select:none;font-style:italic;color:rgba(26,127,90,0.15)}
+.section-title{font-family:'DM Serif Display',serif;font-size:38px;letter-spacing:-1px;color:var(--text)}
+.section-title em{color:var(--green);font-style:italic}
+
+/* ── experience ── */
+.exp-section{background:var(--cream2);color:var(--text)}
+.exp-section .section-title{color:var(--text)}
+.exp-section .section-num{color:rgba(26,127,90,0.15)}
+.exp-grid{display:grid;gap:0}
+.exp-item{display:grid;grid-template-columns:200px 1fr;gap:2rem;padding:2.5rem 0;border-bottom:1px solid var(--border);opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.exp-item.visible{opacity:1;transform:translateY(0)}
+.exp-item:first-child{border-top:1px solid var(--border)}
+.exp-meta{padding-top:4px}
+.exp-company{font-size:12px;color:var(--green);font-weight:500;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:4px}
+.exp-date{font-size:12px;color:var(--text3);line-height:1.5}
+.exp-body{}
+.exp-role{font-family:'DM Serif Display',serif;font-size:22px;color:var(--text);margin-bottom:0.75rem;line-height:1.2}
+.exp-desc{font-size:14px;color:var(--text2);line-height:1.75;font-weight:300}
+.exp-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem}
+.exp-tag{font-size:11px;border:1px solid var(--border);border-radius:100px;padding:4px 12px;color:var(--text3)}
+.exp-tag.active{border-color:var(--green);color:var(--green);background:var(--green-dim)}
+
+/* ── skills ── */
+.skills-section{background:var(--cream)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.skill-card{background:white;border:1px solid var(--border);border-radius:16px;padding:1.5rem;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.25s,box-shadow 0.25s;cursor:default}
+.skill-card.visible{opacity:1;transform:translateY(0)}
+.skill-card:hover{border-color:var(--green);box-shadow:0 8px 32px rgba(26,127,90,0.12)}
+.skill-icon{width:44px;height:44px;background:var(--green-dim);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem}
+.skill-name{font-size:15px;font-weight:500;margin-bottom:0.5rem}
+.skill-list{font-size:12.5px;color:var(--text2);line-height:1.8}
+
+/* ── projects ── */
+.projects-section{background:var(--cream2)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.proj-card{background:white;border:1px solid var(--border);border-radius:16px;padding:1.75rem;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
+.proj-card.visible{opacity:1;transform:translateY(0)}
+.proj-card:hover{border-color:var(--green);box-shadow:0 12px 40px rgba(26,127,90,0.1);transform:translateY(-4px)}
+.proj-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--green);opacity:0;transition:opacity 0.25s}
+.proj-card:hover::before{opacity:1}
+.proj-label{font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase;font-weight:500;margin-bottom:0.75rem}
+.proj-name{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:0.6rem;line-height:1.25}
+.proj-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300}
+.proj-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem}
+.proj-tech{font-size:11px;color:var(--text3)}
+.proj-arrow{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text3);transition:border-color 0.2s,color 0.2s,background 0.2s}
+.proj-card:hover .proj-arrow{border-color:var(--green);color:var(--green);background:var(--green-dim)}
+
+/* ── education ── */
+.edu-section{background:var(--cream);color:var(--text)}
+.edu-section .section-title{color:var(--text)}
+.edu-section .section-num{color:rgba(26,127,90,0.15)}
+.edu-card{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+.edu-card.visible{opacity:1;transform:translateY(0)}
+.edu-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-dim);border:1px solid rgba(26,127,90,0.3);border-radius:100px;padding:6px 16px;font-size:12px;color:var(--green);margin-bottom:1.25rem}
+.edu-degree{font-family:'DM Serif Display',serif;font-size:32px;color:var(--text);line-height:1.2;margin-bottom:0.75rem}
+.edu-school{font-size:15px;color:var(--text2);margin-bottom:0.4rem}
+.edu-gpa{font-size:13px;color:var(--text3)}
+.edu-courses-title{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:1rem;font-weight:500}
+.edu-course-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.edu-course{background:white;border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12.5px;color:var(--text2)}
+
+/* ── contact ── */
+.contact-section{background:var(--cream);text-align:center}
+.contact-name{font-family:'DM Serif Display',serif;font-size:clamp(36px,6vw,64px);letter-spacing:-2px;margin-bottom:1rem;opacity:0;animation:fadeUp 0.8s ease 0.1s forwards}
+.contact-name em{color:var(--green);font-style:italic}
+.contact-sub{font-size:16px;color:var(--text2);font-weight:300;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.8s ease 0.25s forwards}
+.contact-info{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:3rem;opacity:0;animation:fadeUp 0.8s ease 0.4s forwards}
+.contact-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text2)}
+.contact-item svg{color:var(--green)}
+.contact-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s ease 0.55s forwards}
+.footer{padding:1.5rem 3rem;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--text3)}
+
+/* ── animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:0.4;transform:scaleY(0.7)}}
+
+/* ── hamburger ── */
+.nav-hamburger{display:none;flex-direction:column;justify-content:space-between;width:26px;height:18px;background:none;border:none;cursor:pointer;padding:0;z-index:200}
+.nav-hamburger span{display:block;width:100%;height:1.5px;background:var(--text);border-radius:2px;transition:transform 0.3s ease,opacity 0.3s ease}
+.nav-hamburger.open span:nth-child(1){transform:translateY(8.25px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-8.25px) rotate(-45deg)}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:98;backdrop-filter:blur(2px)}
+.nav-overlay.open{display:block}
+
+/* ── tablet (768–1024px) ── */
+@media(max-width:1024px){
+  nav{padding:1rem 2rem}
+  .hero{padding:7rem 2rem 4rem}
+  section{padding:5rem 2rem}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .proj-grid{grid-template-columns:repeat(2,1fr)}
+  .edu-card{gap:2.5rem}
+  .section-title{font-size:32px}
+  .section-num{font-size:52px}
+}
+
+/* ── mobile (≤768px) ── */
+@media(max-width:768px){
+  .cursor,.cursor-ring{display:none}
+  nav{padding:1rem 1.25rem}
+  .nav-hamburger{display:flex}
+  .nav-links{
+    display:flex;flex-direction:column;gap:0;
+    position:fixed;top:0;right:-100%;width:72%;max-width:280px;height:100vh;
+    background:var(--cream);z-index:199;padding:5rem 2rem 2rem;
+    box-shadow:-4px 0 24px rgba(0,0,0,0.08);
+    transition:right 0.35s cubic-bezier(.25,.46,.45,.94);
+  }
+  .nav-links.open{right:0}
+  .nav-links a{font-size:17px;color:var(--text);padding:0.9rem 0;border-bottom:1px solid var(--border);letter-spacing:0}
+  .nav-links a:last-child{border-bottom:none}
+  .hero{padding:5.5rem 1.25rem 3.5rem;min-height:100svh}
+  .hero-name{letter-spacing:-1px}
+  .hero-bg-circle.c1{width:300px;height:300px;right:-80px;top:-60px}
+  .hero-bg-circle.c2{width:180px;height:180px;left:-40px}
+  .hero-bg-line{display:none}
+  .hero-desc{font-size:15px;max-width:100%}
+  .hero-pills{gap:8px}
+  .pill{font-size:12px;padding:6px 12px}
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  .btn-primary,.btn-outline{width:100%;justify-content:center;padding:14px 24px}
+  .hero-scroll{display:none}
+  section{padding:3.5rem 1.25rem}
+  .section-header{gap:0.6rem;margin-bottom:2rem}
+  .section-num{font-size:44px}
+  .section-title{font-size:28px}
+  .exp-item{grid-template-columns:1fr;gap:0.75rem;padding:2rem 0}
+  .exp-role{font-size:18px}
+  .skills-grid{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr}
+  .edu-card{grid-template-columns:1fr;gap:2rem}
+  .edu-degree{font-size:24px}
+  .edu-course-grid{grid-template-columns:1fr}
+  .contact-info{flex-direction:column;align-items:center;gap:1rem}
+  .contact-actions{flex-direction:column;align-items:center;width:100%}
+  .contact-actions a{width:100%;max-width:280px;justify-content:center}
+  .footer{padding:1.25rem}
+  .contact-name{letter-spacing:-1px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">R<span>.</span>Tiwary</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#experience" onclick="closeMenu()">Experience</a>
+    <a href="#skills" onclick="closeMenu()">Skills</a>
+    <a href="#projects" onclick="closeMenu()">Projects</a>
+    <a href="#education" onclick="closeMenu()">Education</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+    <div class="hero-bg-line" style="left:25%"></div>
+    <div class="hero-bg-line" style="left:50%"></div>
+    <div class="hero-bg-line" style="left:75%"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Portfolio · 2026</div>
+    <h1 class="hero-name">Rajan Kumar<br><em>Tiwary</em></h1>
+    <p class="hero-desc">B2B Sales · Business Development · WordPress Developer · Food Technologist. Building brands, growing clients, and shipping websites across India's food-tech ecosystem.</p>
+    <div class="hero-pills">
+      <span class="pill"><span class="pill-dot"></span>Sasaram, Bihar</span>
+      <span class="pill"><span class="pill-dot"></span>Open to opportunities</span>
+      <span class="pill"><span class="pill-dot"></span>Food-Tech · Agri-Tech</span>
+    </div>
+    <div class="hero-actions">
+      <a href="mailto:rajantiwary1904@gmail.com" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get in touch
+      </a>
+      <a href="#experience" class="btn-outline">View work ↓</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title">Work <em>Experience</em></h2>
+    </div>
+    <div class="exp-grid">
+
+      <div class="exp-item" data-delay="0">
+        <div class="exp-meta">
+          <div class="exp-company">Arboreal Bioinnovations</div>
+          <div class="exp-date">May 2025 – April 2026<br>Lucknow, UP</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Business Development Executive & WordPress Developer</div>
+          <div class="exp-desc">Managing B2B sales for yeast protein, coconut ingredients (Cococo), and fermentation (Teraferm) portfolios. Key accounts include Tata 1mg, Livo Universe, 3rd-party manufacturers, and direct consumers. Built and maintain 3 brand websites using WordPress + Elementor. Driving inbound via IndiaMart & DoubleTick WhatsApp B2B. Authored export proposals and GTM strategies targeting Blue Tokai, CCD, McCafé & Nestlé India. Built a Flask logistics tracker to automate delivery alerts.</div>
+          <div class="exp-tags">
+            <span class="exp-tag active">B2B Sales</span>
+            <span class="exp-tag active">WordPress</span>
+            <span class="exp-tag active">IndiaMart</span>
+            <span class="exp-tag active">GTM Strategy</span>
+            <span class="exp-tag">Flask · Python</span>
+            <span class="exp-tag">Elementor</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item" data-delay="120">
+        <div class="exp-meta">
+          <div class="exp-company">Jasper Foods</div>
+          <div class="exp-date">Dec 2024 – April 2025<br>Faridabad, Haryana</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Quality Control Executive</div>
+          <div class="exp-desc">Quality checks and sensory evaluations for frozen food products. Overseeing HACCP CCPs, managing COA/PIF documentation, regulatory label compliance, and collaborating with cross-functional teams to improve process efficiency.</div>
+          <div class="exp-tags">
+            <span class="exp-tag active">HACCP</span>
+            <span class="exp-tag active">ISO 22000</span>
+            <span class="exp-tag">QA Documentation</span>
+            <span class="exp-tag">Sensory Evaluation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item" data-delay="240">
+        <div class="exp-meta">
+          <div class="exp-company">Hanuram Food</div>
+          <div class="exp-date">Oct – Nov 2024<br>Vadodara, Gujarat</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Production & Quality Control Engineer</div>
+          <div class="exp-desc">GMP supervision, quality assessments of raw materials and finished products per ISO 22000 and HACCP. Packaging integrity checks and detailed QA reporting for management.</div>
+          <div class="exp-tags">
+            <span class="exp-tag active">GMP</span>
+            <span class="exp-tag">ISO 22000</span>
+            <span class="exp-tag">QA Reporting</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title">Skills &amp; <em>Expertise</em></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card" data-delay="0">
+        <div class="skill-icon">📈</div>
+        <div class="skill-name">B2B Sales & Business Development</div>
+        <div class="skill-list">Lead generation · Client management · IndiaMart · DoubleTick (WhatsApp B2B) · Export proposals · GTM strategy</div>
+      </div>
+      <div class="skill-card" data-delay="100">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">Web Development</div>
+        <div class="skill-list">WordPress · Elementor · HTML/CSS · Basic JS · Flask (Python) · UX & SEO best practices</div>
+      </div>
+      <div class="skill-card" data-delay="200">
+        <div class="skill-icon">📣</div>
+        <div class="skill-name">Digital Marketing</div>
+        <div class="skill-list">B2B marketing · IndiaMart optimisation · WhatsApp automation · Email campaigns · Brand storytelling</div>
+      </div>
+      <div class="skill-card" data-delay="300">
+        <div class="skill-icon">🧪</div>
+        <div class="skill-name">Food Technology</div>
+        <div class="skill-list">HACCP · ISO 22000 · FSSAI guidelines · GMP · Food safety auditing · Product development · Sensory analysis</div>
+      </div>
+      <div class="skill-card" data-delay="400">
+        <div class="skill-icon">🔬</div>
+        <div class="skill-name">Laboratory Skills</div>
+        <div class="skill-list">Microbiological testing · Shelf-life analysis · pH testing · Rheological testing · Proximate analysis</div>
+      </div>
+      <div class="skill-card" data-delay="500">
+        <div class="skill-icon">🤝</div>
+        <div class="skill-name">Soft Skills</div>
+        <div class="skill-list">Cross-functional collaboration · Client communication · Problem solving · Leadership · Critical thinking · Report writing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title">Key <em>Projects</em></h2>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card" data-delay="0">
+        <div class="proj-label">Website</div>
+        <div class="proj-name">teraferm.com</div>
+        <div class="proj-desc">Full brand website built with WordPress + Elementor. Designed brand system, SEO structure, blog section, and drove site to go-live readiness with a complete audit and manager approval flow.</div>
+        <div class="proj-footer"><span class="proj-tech">WordPress · Elementor · SEO</span><div class="proj-arrow">→</div></div>
+      </div>
+      <div class="proj-card" data-delay="100">
+        <div class="proj-label">Website</div>
+        <div class="proj-name">cococoingredients.com</div>
+        <div class="proj-desc">Complete homepage for Cococo sub-brand — hero banner, product cards, Why Choose Us panel, 2-card blog section. Custom brand color palette and typography system built from scratch.</div>
+        <div class="proj-footer"><span class="proj-tech">WordPress · Elementor · Branding</span><div class="proj-arrow">→</div></div>
+      </div>
+      <div class="proj-card" data-delay="200">
+        <div class="proj-label">Tool</div>
+        <div class="proj-name">Shipment Tracker</div>
+        <div class="proj-desc">Flask + HTML logistics dashboard to monitor overdue deliveries across Delhivery, BlueDart & OM Logistics. Automated partner alerts to reduce escalations.</div>
+        <div class="proj-footer"><span class="proj-tech">Python · Flask · HTML</span><div class="proj-arrow">→</div></div>
+      </div>
+      <div class="proj-card" data-delay="300">
+        <div class="proj-label">Strategy</div>
+        <div class="proj-name">Yeast Protein GTM</div>
+        <div class="proj-desc">Go-to-market plan targeting Blue Tokai, CCD, McCafé & Nestlé India. Tailored outreach emails and value propositions per brand segment, leveraging SuperYou/Starbucks India as proof-of-concept.</div>
+        <div class="proj-footer"><span class="proj-tech">Business Development · GTM</span><div class="proj-arrow">→</div></div>
+      </div>
+      <div class="proj-card" data-delay="400">
+        <div class="proj-label">R&D · BHU 2025</div>
+        <div class="proj-name">Low-Calorie Snack</div>
+        <div class="proj-desc">Market research, prototype formulation, consumer taste tests, and FSSAI-compliant labelling for a low-calorie snack product. Collaborated with nutritionists on macro targets.</div>
+        <div class="proj-footer"><span class="proj-tech">Food Technology · R&D</span><div class="proj-arrow">→</div></div>
+      </div>
+      <div class="proj-card" data-delay="500">
+        <div class="proj-label">R&D · BHU 2024</div>
+        <div class="proj-name">Beetroot Candies</div>
+        <div class="proj-desc">Recipe formulation, consumer feedback sessions, organic ingredient sourcing, and brand identity creation for innovative natural beetroot confectionery.</div>
+        <div class="proj-footer"><span class="proj-tech">Food Technology · Branding</span><div class="proj-arrow">→</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-section" id="education">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <h2 class="section-title">Edu<em>cation</em></h2>
+    </div>
+    <div class="edu-card" id="eduCard">
+      <div>
+        <div class="edu-badge">🎓 June 2021 – June 2025</div>
+        <div class="edu-degree">B.Tech — Food Technology</div>
+        <div class="edu-school">Banaras Hindu University (BHU), Varanasi</div>
+      </div>
+      <div>
+        <div class="edu-courses-title">Relevant Coursework</div>
+        <div class="edu-course-grid">
+          <div class="edu-course">Food Processing Technology</div>
+          <div class="edu-course">Food Microbiology</div>
+          <div class="edu-course">Quality Control</div>
+          <div class="edu-course">Food Safety & Standards</div>
+          <div class="edu-course">Food Biotechnology</div>
+          <div class="edu-course">Food Thermodynamics</div>
+          <div class="edu-course">Confectionery</div>
+          <div class="edu-course">Nutrition Labelling</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <h2 class="contact-name">Let's <em>connect</em></h2>
+    <p class="contact-sub">Open to Business Development, Growth, and Web roles at food-tech & agri-tech startups.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        rajantiwary1904@gmail.com
+      </div>
+      <div class="contact-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +91-7061734430
+      </div>
+      <div class="contact-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Sasaram, Bihar, India
+      </div>
+    </div>
+    <div class="contact-actions">
+      <a href="mailto:rajantiwary1904@gmail.com" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Send an email
+      </a>
+      <a href="tel:+917061734430" class="btn-outline">Call me</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2025 Rajan Kumar Tiwary · Built with passion
+</footer>
+
+<script>
+function toggleMenu(){
+  const nav=document.getElementById('navLinks');
+  const btn=document.getElementById('hamburger');
+  const overlay=document.getElementById('navOverlay');
+  nav.classList.toggle('open');
+  btn.classList.toggle('open');
+  overlay.classList.toggle('open');
+  document.body.style.overflow=nav.classList.contains('open')?'hidden':'';
+}
+function closeMenu(){
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cursor.style.transform=`translate(${mx-5}px,${my-5}px)`;
+});
+function animRing(){
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+  ring.style.transform=`translate(${rx-18}px,${ry-18}px)`;
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const delay = +(e.target.dataset.delay||0);
+      setTimeout(()=>e.target.classList.add('visible'),delay);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.12});
+
+document.querySelectorAll('.exp-item,.skill-card,.proj-card').forEach(el=>io.observe(el));
+
+const eduIo = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');eduIo.unobserve(e.target);}});
+},{threshold:0.2});
+eduIo.observe(document.getElementById('eduCard'));
+</script>
+</body>
+</html>
